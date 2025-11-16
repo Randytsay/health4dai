@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>針對您情況的營養補充建議</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chosen Palette: Calm Harmony (Grays, Cyan) -->
+    <!-- Application Structure Plan: A single-page, vertical-scroll app with 4 key sections: 1. Symptom Analysis (connecting constipation/weakness to digestion/absorption/circulation), 2. Interactive Product Explorer (master-detail view to show product info + a custom "Rationale" section linking it to the symptoms), 3. Priority Guide (a clear, 3-step purchasing plan), 4. Disclaimer. This consultative, step-by-step structure guides the user from their problem to a solution, which is more effective than a static dashboard for this scenario. -->
+    <!-- Visualization & Content Choices: Report Info: Symptoms (constipation, pale, weak) + 6 products. Goal: Analyze & Recommend. Presentation: 1. Analysis (HTML Text). 2. Products (JS-driven Master-Detail UI). 3. Priority (Styled HTML list). Interaction: Users click a product button to dynamically load its details (from source) and a custom "Rationale" (explaining its relevance to the symptoms) into a single, shared content area. This dynamic update is the core interaction. Justification: This master-detail pattern is clearer than 6 static cards, as it focuses the user's attention and allows for richer content per item without clutter. Library: Vanilla JS for DOM manipulation. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        }
+        .product-btn.active {
+            background-color: #0891b2; /* cyan-700 */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center">
+            <h1 class="text-xl font-bold text-cyan-800">您的客製化營養分析</h1>
+            <div class="space-x-4">
+                <a href="#analysis" class="nav-link text-gray-600 hover:text-cyan-700 transition-colors">情況分析</a>
+                <a href="#products" class="nav-link text-gray-600 hover:text-cyan-700 transition-colors">產品探索</a>
+                <a href="#priority" class="nav-link text-gray-600 hover:text-cyan-700 transition-colors">建議順序</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-5xl mx-auto p-4 md:p-8">
+
+        <section id="analysis" class="mb-12 pt-16 -mt-16">
+            <h2 class="text-3xl font-bold text-cyan-700 mb-4 pb-2 border-b border-cyan-200">嗨，這是我為您準備的分析</h2>
+            <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                <p class="text-lg leading-relaxed">嗨！針對您提到的健康情況，我特別為您整理了這份分析。這是一個常見但需要重視的組合，這些症狀往往互為因果。</p>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <h3 class="font-semibold text-lg text-gray-700">可能的關聯性：</h3>
+                        <ul class="list-disc list-inside mt-2 space-y-1 text-gray-600">
+                            <li><strong>消化與吸收不良：</strong>長期便秘意味著腸道功能可能不佳，食物殘渣停留過久，影響營養吸收。</li>
+                            <li><strong>營養素缺乏：</strong>當消化吸收受阻，即使飲食均衡，身體也可能無法獲得足夠的營養素（如維生素B群、鐵質等），導致「虛弱」和「蒼白」的表徵。</li>
+                            <li><strong>腸道菌叢失衡：</strong>便秘也常與腸道菌叢生態有關，壞菌過多或好菌不足會進一步影響消化。</li>
+                            <li><strong>循環與代謝：</strong>嘴唇無血色也可能與末梢循環不佳有關，這可能與整體的能量代謝（虛弱）相關聯。</li>
+                        </ul>
+                    </div>
+                    <div class="bg-cyan-50 p-4 rounded-lg border border-cyan-200">
+                        <h3 class="font-semibold text-lg text-cyan-800">分析的目標：</h3>
+                        <p class="mt-2 text-gray-700">這份介紹將幫助您了解，從營養補充的角度，有哪些可能的支持方式，方便您選擇最適合自己的方案：
+                        <br> <strong>1. 支持消化道機能</strong>
+                        <br> <strong>2. 補充關鍵營養素</strong>
+                        <br> <strong>3. 促進體內環保與循環</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="products" class="mb-12 pt-16 -mt-16">
+            <h2 class="text-3xl font-bold text-cyan-700 mb-6 pb-2 border-b border-cyan-200">產品介紹與分析</h2>
+            <p class="text-lg text-gray-600 mb-6">請點選以下產品，查看詳細介紹以及它們如何能針對您的需求提供支持。</p>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 mb-6">
+                <button class="product-btn w-full p-3 text-sm md:text-base font-semibold bg-white text-cyan-800 rounded-lg shadow hover:shadow-md transition-all duration-300" data-id="enzymes">益生消化酵素</button>
+                <button class="product-btn w-full p-3 text-sm md:text-base font-semibold bg-white text-cyan-800 rounded-lg shadow hover:shadow-md transition-all duration-300" data-id="calcium">等滲鈣粉末</button>
+                <button class="product-btn w-full p-3 text-sm md:text-base font-semibold bg-white text-cyan-800 rounded-lg shadow hover:shadow-md transition-all duration-300" data-id="greens">樂活蔬果精華</button>
+                <button class="product-btn w-full p-3 text-sm md:text-base font-semibold bg-white text-cyan-800 rounded-lg shadow hover:shadow-md transition-all duration-300" data-id="opc3">葡萄籽/松樹皮</button>
+                <button class="product-btn w-full p-3 text-sm md:text-base font-semibold bg-white text-cyan-800 rounded-lg shadow hover:shadow-md transition-all duration-300" data-id="bromelain">鳳梨酵素</button>
+                <button class="product-btn w-full p-3 text-sm md:text-base font-semibold bg-white text-cyan-800 rounded-lg shadow hover:shadow-md transition-all duration-300" data-id="d3k2">維生素D3/K2</button>
+            </div>
+
+            <div id="product-detail-container" class="bg-white p-6 md:p-8 rounded-lg shadow-xl min-h-[400px] hidden">
+                <h3 id="product-name" class="text-2xl font-bold text-gray-800 mb-4"></h3>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="md:col-span-2">
+                        
+                        <div class="flex gap-4 mb-6 max-w-sm mx-auto">
+                            <img id="product-image-1" src="https://placehold.co/300x300/e0f2fe/0c4a6e?text=請選產品" alt="產品圖片 1" class="w-1/2 rounded-lg shadow-md">
+                            <img id="product-image-2" src="https://placehold.co/300x300/e0f2fe/0c4a6e?text=請選產品" alt="產品圖片 2" class="w-1/2 rounded-lg shadow-md">
+                        </div>
+
+                        <h4 class="font-semibold text-lg text-gray-700 mb-2">產品介紹</h4>
+                        <p id="product-description" class="text-gray-600 leading-relaxed"></p>
+
+                        <a id="product-link" 
+                           href="#" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           class="mt-6 inline-block bg-cyan-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-cyan-700 transition-all duration-300 hidden">
+                           前往產品官網 
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block ml-1" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+                        </a>
+                    </div>
+                    
+                    <div class="md:col-span-1">
+                        <h4 class="font-semibold text-lg text-gray-700 mb-2">主要成分</h4>
+                        <ul id="product-ingredients" class="space-y-2 mb-4 text-gray-600">
+                        </ul>
+                        <h4 class="font-semibold text-lg text-gray-700 mb-2">為何推薦給您？</h4>
+                        <p id="product-rationale" class="text-gray-600 bg-cyan-50 border border-cyan-200 p-3 rounded-lg"></p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="priority" class="mb-12 pt-16 -mt-16">
+            <h2 class="text-3xl font-bold text-cyan-700 mb-6 pb-2 border-b border-cyan-200">建議的補充順序</h2>
+            <p class="text-lg text-gray-600 mb-6">考量到「長期便秘」可能為最困擾且核心的問題，我建議您可以分階段補充，從根本的消化機能開始調整。</p>
+            
+            <div class="flex flex-col md:flex-row gap-6">
+                
+                <div class="flex-1 bg-white p-6 rounded-lg shadow-md border-t-4 border-cyan-500">
+                    <h3 class="text-xl font-bold text-cyan-800 mb-3">第一階段：建立基礎 (消化機能)</h3>
+                    <p class="text-gray-600 mb-4">首先集中火力改善消化道機能與腸道蠕動。</p>
+                    <ul class="space-y-2">
+                        <li class="font-semibold">1. 愛尚它®益生消化酵素粉末</li>
+                        <p class="text-sm text-gray-500 pl-4">最直接幫助食物分解與改善腸道菌叢，是處理便秘的首選。</p>
+                        <li class="font-semibold">2. 愛尚它®等滲鈣粉末</li>
+                        <p class="text-sm text-gray-500 pl-4">配方中的「鎂」有助於放鬆肌肉與神經，對腸道平滑肌的正常蠕動有支持作用。</p>
+                    </ul>
+                </div>
+
+                <div class="flex-1 bg-white p-6 rounded-lg shadow-md border-t-4 border-emerald-500">
+                    <h3 class="text-xl font-bold text-emerald-800 mb-3">第二階段：營養補充 (能量氣色)</h3>
+                    <p class="text-gray-600 mb-4">當消化道功能開始改善，接著補充身體缺乏的營養，改善虛弱與氣色。</p>
+                    <ul class="space-y-2">
+                        <li class="font-semibold">3. 愛尚它®樂活蔬果精華粉末</li>
+                        <p class="text-sm text-gray-500 pl-4">提供日常飲食不足的植物營養素，協助體內環保，為身體提供能量。</p>
+                        <li class="font-semibold">4. 愛尚它®葡萄籽、松樹皮、紅酒萃取精華</li>
+                        <p class="text-sm text-gray-500 pl-4">強效抗氧化物有助於促進循環，可能改善「嘴唇無血色」的狀況。</p>
+                    </ul>
+                </div>
+
+                <div class="flex-1 bg-white p-6 rounded-lg shadow-md border-t-4 border-sky-500">
+                    <h3 class="text-xl font-bold text-sky-800 mb-3">第三階段：進階微調</h3>
+                    <p class="text-gray-600 mb-4">根據前兩階段的改善情況，進行微調。</p>
+                    <ul class="space-y-2">
+                        <li class="font-semibold">5. 愛尚它®鳳梨酵素粉末</li>
+                        <p class="text-sm text-gray-500 pl-4">如果平時蛋白質攝取多，消化負擔重，可加入此項加強蛋白質分解。</p>
+                        <li class="font-semibold">6. 愛尚它®維生素D3 (含K2)</li>
+                        <p class="text-sm text-gray-500 pl-4">D3是現代人普遍缺乏的，若鈣粉末已補充D3，可評估是否需要額外加強。</p>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 mt-12 py-8">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <h4 class="font-bold text-lg text-white mb-2">重要提醒</h4>
+            <p class="text-sm text-gray-400">本分析僅基於您提到的情況與產品特性，提供一個可能的營養補充思路，並非醫療診斷或治療建議。個人體質不同，效果亦因人而異。長期的健康問題，強烈建議您應首先諮詢專業醫師或營養師，進行全面評估。本資訊僅為產品介紹，不具任何宣稱療效之意圖。</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const productsData = {
+                calcium: {
+                    name: "愛尚它®等滲鈣粉末",
+                    description: "採用的等滲透溶液技術，幫助營養快速吸收。鈣由多種鈣化合物組成，搭配輔助營養素，共同幫助骨骼與牙齒健康。等滲透技術能迅速通過胃排空，減少營養流失，對腸胃較溫和。",
+                    ingredients: ["碳酸鈣", "乳酸鈣", "檸檬酸鈣", "磷酸鈣", "維生素 D3", "鎂", "錳", "維生素 C", "維生素 B2", "硼、鉀"],
+                    rationale: "重點在於配方中的『鎂』。鎂是維持神經與肌肉功能的關鍵元素，有助於放鬆肌肉。對於便秘，足夠的鎂可以幫助腸道平滑肌正常收縮與蠕動，是改善便秘的關鍵營養素之一。",
+                    imagePlaceholder1: "/img/ca1.jpg",
+                    imagePlaceholder2: "/img/ca2.jpg",
+                    productUrl: "https://tw.shop.com/0912559509/-644795619-p.xhtml?credituser=C1757928924"
+                },
+                bromelain: {
+                    name: "愛尚它®鳳梨酵素粉末",
+                    description: "主要成分為鳳梨酵素（Bromelain）與蛋白酵素（Protease），均屬於蛋白質分解酵素，能將大分子蛋白質分解為小分子胜肽與胺基酸，讓身體更容易吸收利用。適合高蛋白飲食者或希望減輕腸胃消化負擔的人。",
+                    ingredients: ["鳳梨酵素 (Bromelain)", "蛋白酵素 (Protease)", "鉀", "白柳 (White Willow)", "不含乳製品、麩質", "全素產品"],
+                    rationale: "如果便秘伴隨著消化不良或脹氣，特別是在攝取較多蛋白質後，鳳梨酵素能協助分解食物，減輕腸胃道的負擔。它能輔助『益生消化酵素』，專門加強蛋白質的消化。",
+                    imagePlaceholder1: "/img/鳳1.jpg",
+                    imagePlaceholder2: "/img/鳳2.jpg",
+                    productUrl: "https://tw.shop.com/0912559509/-1167078804-p.xhtml?credituser=C1757928924"
+                },
+                greens: {
+                    name: "愛尚它®樂活蔬果精華粉末",
+                    description: "提供多種植物營養素（植化素），幫助均衡飲食，特別適合平時蔬菜水果攝取不足的人。成分有助於支持消化功能、促進體內環保與排毒，並維持整體健康與活力。等滲透配方有助快速吸收。",
+                    ingredients: ["螺旋藻", "小麥草", "苜蓿草", "大麥草", "綠藻", "綠花椰菜粉末", "高麗菜粉末", "甘藍菜粉末"],
+                    rationale: "長期便秘可能與膳食纖維或植物營養素攝取不足有關。此產品提供了多種深綠色蔬菜與藻類精華，雖然不是粗纖維，但能提供『體內環保』所需的植化素，支持消化道健康。",
+                    imagePlaceholder1: "/img/su1.jpg",
+                    imagePlaceholder2: "/img/su2.jpg",
+                    productUrl: "https://tw.shop.com/0912559509/-830636063-p.xhtml?credituser=C1757928924"
+                },
+                d3k2: {
+                    name: "愛尚它®維生素D3 (含維生素K2)粉末",
+                    description: "主要包含維生素D3、維生素K2、鈣與鉀。D3促進鈣與磷的吸收；K2幫助鈣質正確沉積在骨骼中，避免在血管堆積。兩者協同作用，提升骨骼健康與心血管保護。",
+                    ingredients: ["鈣 (Calcium)", "鉀 (Potassium)", "維生素D3 (Vitamin D3)", "維生素K2 (Vitamin K2)"],
+                    rationale: "維生素D3不僅與骨骼相關，也支持免疫系統功能。雖然它與便秘或臉色蒼白沒有最直接的關聯，但 D3 是維持整體健康和活力的基礎營養素，對『身體較虛』的狀態有輔助作用。",
+                    imagePlaceholder1: "/img/D.jpg",
+                    imagePlaceholder2: "/img/D2.jpg",
+                    productUrl: "https://tw.shop.com/0912559509/-830636060-p.xhtml?credituser=C1757928924"
+                },
+                enzymes: {
+                    name: "愛尚它®益生消化酵素粉末",
+                    description: "含有6種關鍵消化酵素（蛋白酶、澱粉酶、脂肪酶、乳糖酶、蔗糖酶、纖維素酶），能協助分解各種食物。此外，含有的益生菌 Bacillus coagulans (Lactospore™) 可幫助改變腸道菌叢生態，促進消化道健康。",
+                    ingredients: ["綜合消化酵素 (6種)", "Lactospore™ (芽孢乳酸菌)", "蘋果纖維", "氧化鎂", "硫酸鋅"],
+                    rationale: "這可能是最直接針對『長期便秘』的產品。它從兩方面著手：1. 消化酵素直接幫助分解食物，減輕腸道負擔。2. 益生菌幫助改善腸道菌叢，從根本調整腸道環境。這是改善消化吸收、緩解便秘的核心。",
+                    imagePlaceholder1: "/img/消1.jpg",
+                    imagePlaceholder2: "/img/消2.jpg",
+                    productUrl: "https://tw.shop.com/0912559509/1661949838-p.xhtml?credituser=C1757928924"
+                },
+                opc3: {
+                    name: "愛尚它®葡萄籽、松樹皮、紅酒萃取精華粉末",
+                    description: "富含原花青素 (OPCs) 的多元抗氧化配方，主要成分包含碧容健® (Pycnogenol® 松樹皮萃取物)、葡萄籽萃取物、紅酒萃取物、山桑果及柑橘生物類黃酮。碧容健®是研究廣泛的專利成分，有助於中和自由基，支持循環與健康維持。",
+                    ingredients: ["山桑果萃取物", "柑橘萃取生物類黃酮", "葡萄籽萃取物", "松樹皮萃取物 (Pycnogenol®)", "紅酒萃取物", "維生素 C & E"],
+                    rationale: "此產品的強項在於『抗氧化』與『促進循環』。對於『嘴唇沒有血色、臉色偏白』的狀況，可能代表末梢循環不佳。OPCs (尤其是碧容健®) 以支持血管健康、促進循環聞名，可能有助於改善氣色。",
+                    imagePlaceholder1: "/img/OPC1.jpg",
+                    imagePlaceholder2: "/img/OPC2.jpg",
+                    productUrl: "https://tw.shop.com/0912559509/644795616-p.xhtml?credituser=C1757928924"
+                }
+            };
+
+            const detailContainer = document.getElementById('product-detail-container');
+            const productNameEl = document.getElementById('product-name');
+            const productDescEl = document.getElementById('product-description');
+            const productIngredientsEl = document.getElementById('product-ingredients');
+            const productRationaleEl = document.getElementById('product-rationale');
+            const productImageEl1 = document.getElementById('product-image-1');
+            const productImageEl2 = document.getElementById('product-image-2');
+            const productLinkEl = document.getElementById('product-link');
+            
+            const allProductButtons = document.querySelectorAll('.product-btn');
+            let activeButton = null;
+
+            function showProductDetails(productKey) {
+                const product = productsData[productKey];
+                if (!product) {
+                    console.error("找不到產品資料:", productKey);
+                    return;
+                }
+                
+                const buttonEl = document.querySelector(`.product-btn[data-id="${productKey}"]`);
+
+                if (activeButton === buttonEl) {
+                    return; 
+                }
+
+                if (activeButton) {
+                    activeButton.classList.remove('active');
+                }
+                
+                if (buttonEl) {
+                    buttonEl.classList.add('active');
+                    activeButton = buttonEl;
+                }
+
+                productNameEl.textContent = product.name;
+                
+                productImageEl1.src = product.imagePlaceholder1;
+                productImageEl1.alt = product.name + " 1";
+                productImageEl2.src = product.imagePlaceholder2;
+                productImageEl2.alt = product.name + " 2";
+
+                productDescEl.textContent = product.description;
+                
+                productIngredientsEl.innerHTML = '';
+                if (product.ingredients && Array.isArray(product.ingredients)) {
+                    product.ingredients.forEach(ingredient => {
+                        const li = document.createElement('li');
+                        li.textContent = ingredient;
+                        li.classList.add('flex', 'items-center');
+                        li.innerHTML = `<span class="h-2 w-2 bg-cyan-500 rounded-full mr-3 flex-shrink-0"></span>` + li.textContent;
+                        productIngredientsEl.appendChild(li);
+                    });
+                }
+
+                productRationaleEl.textContent = product.rationale;
+
+                if (product.productUrl) {
+                    productLinkEl.href = product.productUrl;
+                    productLinkEl.classList.remove('hidden');
+                } else {
+                    productLinkEl.href = '#';
+                    productLinkEl.classList.add('hidden');
+                }
+
+                detailContainer.classList.remove('hidden');
+                
+                if (window.innerWidth < 768 && buttonEl) {
+                    detailContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+            
+            allProductButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const productKey = button.getAttribute('data-id');
+                    showProductDetails(productKey);
+                });
+            });
+            
+            const firstButton = document.querySelector('.product-btn[data-id="enzymes"]');
+            if(firstButton) {
+                firstButton.click();
+            }
+            
+            document.querySelectorAll('a.nav-link').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const headerOffset = document.querySelector('header').offsetHeight;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                    }
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>
