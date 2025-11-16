@@ -4,6 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>針對您情況的營養補充建議 | 專業健康分析</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="專業的營養補充建議分析，針對您的健康狀況提供客製化的產品推薦與補充順序規劃。">
+    <meta name="keywords" content="營養補充,健康分析,愛尚它,等滲透技術,消化酵素,益生菌">
+    <meta name="author" content="健康營養諮詢">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://randytsay.github.io/">
+    <meta property="og:title" content="為您量身打造的營養方案 | 專業健康分析">
+    <meta property="og:description" content="基於您的健康狀況，提供專業的營養補充建議。包含6款精選產品與3階段補充方案。">
+    <meta property="og:image" content="https://randytsay.github.io/img/Image02.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://randytsay.github.io/">
+    <meta name="twitter:title" content="為您量身打造的營養方案 | 專業健康分析">
+    <meta name="twitter:description" content="基於您的健康狀況，提供專業的營養補充建議。包含6款精選產品與3階段補充方案。">
+    <meta name="twitter:image" content="https://randytsay.github.io/img/Image02.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./img/favicon.png">
+    <link rel="apple-touch-icon" href="./img/apple-touch-icon.png">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -326,6 +352,25 @@
             background: linear-gradient(180deg, #0891b2, #22d3ee);
         }
         
+        /* Hero Image Styles */
+        .hero-image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px -10px rgba(8, 145, 178, 0.3);
+        }
+        
+        .hero-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+        
+        .hero-image-container:hover img {
+            transform: scale(1.05);
+        }
+        
         /* Responsive Typography */
         @media (max-width: 768px) {
             .section-title {
@@ -357,7 +402,7 @@
                 <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center">
                     <i class="fas fa-heartbeat text-white text-xl"></i>
                 </div>
-                <h1 class="text-xl md:text-2xl font-bold gradient-text">客製化營養建議</h1>
+                <h1 class="text-xl md:text-2xl font-bold gradient-text">您的客製化營養分析</h1>
             </div>
             <div class="flex space-x-2 md:space-x-6">
                 <a href="#analysis" class="nav-link text-gray-600 hover:text-cyan-700 transition-all duration-300 font-medium flex items-center space-x-1">
@@ -378,7 +423,7 @@
 
     <main class="max-w-6xl mx-auto p-4 md:p-8">
 
-        <!-- Hero Section -->
+        <!-- Hero Section with Image -->
         <section class="mb-16 pt-8">
             <div class="glass-card p-8 md:p-12 rounded-2xl text-center hover-lift">
                 <div class="inline-block mb-4">
@@ -387,9 +432,15 @@
                     </span>
                 </div>
                 <h2 class="text-3xl md:text-5xl font-bold gradient-text mb-4">為您量身打造的營養方案</h2>
-                <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-8">
                     基於您的健康狀況，我們為您準備了這份專業分析報告
                 </p>
+                
+                <!-- Hero Image -->
+                <div class="hero-image-container max-w-4xl mx-auto mb-8">
+                    <img src="./img/Image01.jpg" alt="Isotonix 營養補充產品系列" class="rounded-2xl">
+                </div>
+                
                 <div class="flex justify-center space-x-8 mt-8">
                     <div class="text-center">
                         <div class="text-3xl font-bold gradient-text">6</div>
@@ -526,7 +577,7 @@
                     樂活蔬果精華
                 </button>
                 <button class="product-btn glass-card p-4 text-sm md:text-base font-semibold text-cyan-800 rounded-xl shadow-lg" data-id="opc3">
-                    <i class="fas fa-grape-alt block text-2xl mb-2 text-cyan-600"></i>
+                    <i class="fas fa-wine-bottle block text-2xl mb-2 text-cyan-600"></i>
                     葡萄籽/松樹皮
                 </button>
                 <button class="product-btn glass-card p-4 text-sm md:text-base font-semibold text-cyan-800 rounded-xl shadow-lg" data-id="bromelain">
@@ -679,7 +730,7 @@
                         </li>
                         <li class="glass-card p-4 rounded-lg">
                             <div class="flex items-start space-x-3">
-                                <i class="fas fa-grape-alt text-emerald-600 text-xl mt-1"></i>
+                                <i class="fas fa-wine-bottle text-emerald-600 text-xl mt-1"></i>
                                 <div>
                                     <a href="https://tw.shop.com/0912559509/644795616-p.xhtml?credituser=C1757928924" target="_blank" rel="noopener noreferrer" class="product-link font-semibold text-gray-800">
                                         葡萄籽松樹皮萃取
@@ -701,17 +752,17 @@
                         <span class="badge bg-sky-500">進階階段</span>
                     </div>
                     <h3 class="text-xl font-bold text-sky-800 mb-3">進階微調</h3>
-                    <p class="text-gray-600 mb-4 text-sm">根據改善情況進行微調</p>
+                    <p class="text-gray-600 mb-4 text-sm">根據狀況調整，強化效果</p>
                     <ul class="space-y-4">
                         <li class="glass-card p-4 rounded-lg">
                             <div class="flex items-start space-x-3">
                                 <i class="fas fa-apple-alt text-sky-600 text-xl mt-1"></i>
                                 <div>
-                                    <a href="https://tw.shop.com/0912559509/-1167078804-p.xhtml?credituser=C1757928924" target="_blank" rel="noopener noreferrer" class="product-link font-semibold text-gray-800">
-                                        鳳梨酵素粉末
+                                    <a href="https://tw.shop.com/0912559509/644795617-p.xhtml?credituser=C1757928924" target="_blank" rel="noopener noreferrer" class="product-link font-semibold text-gray-800">
+                                        鳳梨酵素
                                         <i class="fas fa-external-link-alt ml-1"></i>
                                     </a>
-                                    <p class="text-sm text-gray-500 mt-1">加強蛋白質分解能力</p>
+                                    <p class="text-sm text-gray-500 mt-1">加強消化，減輕腸道負擔</p>
                                 </div>
                             </div>
                         </li>
@@ -719,15 +770,38 @@
                             <div class="flex items-start space-x-3">
                                 <i class="fas fa-sun text-sky-600 text-xl mt-1"></i>
                                 <div>
-                                    <a href="https://tw.shop.com/0912559509/-830636060-p.xhtml?credituser=C1757928924" target="_blank" rel="noopener noreferrer" class="product-link font-semibold text-gray-800">
-                                        維生素D3含K2
+                                    <a href="https://tw.shop.com/0912559509/-1685463269-p.xhtml?credituser=C1757928924" target="_blank" rel="noopener noreferrer" class="product-link font-semibold text-gray-800">
+                                        維生素D3搭配K2
                                         <i class="fas fa-external-link-alt ml-1"></i>
                                     </a>
-                                    <p class="text-sm text-gray-500 mt-1">基礎營養素補充</p>
+                                    <p class="text-sm text-gray-500 mt-1">支持鈣質吸收與整體健康</p>
                                 </div>
                             </div>
                         </li>
                     </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="mb-16">
+            <div class="glass-card p-8 md:p-12 rounded-2xl text-center gradient-bg hover-lift">
+                <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
+                    <i class="fas fa-comments mr-3"></i>需要更多協助？
+                </h2>
+                <p class="text-lg text-white/90 mb-6 max-w-2xl mx-auto">
+                    如有任何疑問或需要進一步的個人化建議，歡迎隨時與我們聯繫
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#" class="inline-flex items-center justify-center space-x-2 bg-white text-cyan-700 font-bold py-3 px-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                        <i class="fas fa-phone"></i>
+                        <span>立即諮詢</span>
+                    </a>
+                    <a href="#products" class="inline-flex items-center justify-center space-x-2 bg-white/20 backdrop-blur text-white font-bold py-3 px-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border-2 border-white/50">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>返回產品列表</span>
+                    </a>
                 </div>
             </div>
         </section>
@@ -735,56 +809,168 @@
     </main>
 
     <!-- Footer -->
-    <footer class="gradient-bg text-white mt-16 py-12">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-8">
-                <div class="inline-block w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4 backdrop-blur-sm">
-                    <i class="fas fa-shield-alt text-3xl"></i>
+    <footer class="glass-card py-8 mt-16">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <div class="flex items-center justify-center space-x-3 mb-4">
+                <div class="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center">
+                    <i class="fas fa-heartbeat text-white"></i>
                 </div>
-                <h4 class="font-bold text-2xl mb-3">重要提醒</h4>
-                <div class="w-20 h-1 bg-white bg-opacity-50 mx-auto mb-6 rounded"></div>
+                <span class="font-bold text-gray-700">健康營養諮詢</span>
             </div>
-            <div class="max-w-4xl mx-auto">
-                <div class="glass-card p-6 rounded-xl text-center" style="background: rgba(255, 255, 255, 0.1);">
-                    <p class="text-white text-opacity-90 leading-relaxed">
-                        <i class="fas fa-info-circle mr-2"></i>
-                        本分析僅基於您提到的情況與產品特性，提供營養補充思路，並非醫療診斷或治療建議。個人體質不同，效果因人而異。長期健康問題，強烈建議諮詢專業醫師或營養師進行全面評估。本資訊僅為產品介紹，不具任何宣稱療效之意圖。
-                    </p>
-                </div>
+            <p class="text-gray-500 text-sm mb-4">
+                本建議僅供參考，不能取代專業醫療建議。如有疾病請諮詢專業醫師。
+            </p>
+            <div class="flex justify-center space-x-6 text-gray-400">
+                <a href="#" class="hover:text-cyan-600 transition-colors">
+                    <i class="fab fa-facebook text-xl"></i>
+                </a>
+                <a href="#" class="hover:text-cyan-600 transition-colors">
+                    <i class="fab fa-line text-xl"></i>
+                </a>
+                <a href="#" class="hover:text-cyan-600 transition-colors">
+                    <i class="fab fa-instagram text-xl"></i>
+                </a>
             </div>
-            <div class="text-center mt-8 text-white text-opacity-70 text-sm">
-                <p>© 2025 耀文行動商城 | 用心為您的健康把關</p>
-            </div>
+            <p class="text-gray-400 text-xs mt-4">
+                © 2024 健康營養諮詢. All rights reserved.
+            </p>
         </div>
     </footer>
 
     <script>
-        // Progress Bar
-        window.addEventListener('scroll', () => {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById('progressBar').style.width = scrolled + '%';
-            
-            // Show/Hide Scroll to Top Button
-            const scrollTop = document.getElementById('scrollTop');
-            if (winScroll > 300) {
-                scrollTop.classList.add('show');
-            } else {
-                scrollTop.classList.remove('show');
+        // Product data
+        const products = {
+            enzymes: {
+                name: '愛尚它益生消化酵素粉末',
+                image1: './img/enzymes1.jpg',
+                image2: './img/enzymes2.jpg',
+                description: '結合益生菌與消化酵素的複方產品，採用等滲透技術，能快速被身體吸收。幫助分解蛋白質、脂肪、碳水化合物，同時補充益生菌，維持腸道菌叢平衡。',
+                ingredients: [
+                    '消化酵素複合物',
+                    '益生菌（乳酸桿菌）',
+                    '澱粉酶、蛋白酶',
+                    '脂肪酶、纖維素酶'
+                ],
+                rationale: '針對您的便秘問題，這是最直接有效的選擇。消化酵素幫助食物完全分解，益生菌改善腸道環境，兩者協同作用能有效改善消化與排便。',
+                link: 'https://tw.shop.com/0912559509/1661949838-p.xhtml?credituser=C1757928924'
+            },
+            calcium: {
+                name: '愛尚它等滲鈣粉末',
+                image1: './img/calcium1.jpg',
+                image2: './img/calcium2.jpg',
+                description: '採用等滲透技術的鈣質補充品，含鈣、鎂、維生素D3等營養素。等滲透配方讓營養素以最佳濃度被吸收，不增加腸胃負擔。',
+                ingredients: [
+                    '碳酸鈣、乳酸鈣',
+                    '氧化鎂',
+                    '維生素D3',
+                    '硼、錳等微量元素'
+                ],
+                rationale: '鎂是天然的肌肉鬆弛劑，能幫助腸道平滑肌正常蠕動，改善便秘。同時補充鈣質，支持整體健康。',
+                link: 'https://tw.shop.com/0912559509/-644795619-p.xhtml?credituser=C1757928924'
+            },
+            greens: {
+                name: '愛尚它樂活蔬果精華粉末',
+                image1: './img/greens1.jpg',
+                image2: './img/greens2.jpg',
+                description: '濃縮20種以上蔬果精華，提供豐富的植化素、維生素、礦物質與膳食纖維。等滲透技術確保營養素快速吸收，補充日常飲食不足。',
+                ingredients: [
+                    '綠色蔬菜萃取',
+                    '水果精華',
+                    '植物纖維',
+                    '抗氧化植化素'
+                ],
+                rationale: '您提到虛弱無力，可能與營養素攝取不足有關。這款產品提供全面的植物營養，補充能量與活力，同時膳食纖維也有助於腸道健康。',
+                link: 'https://tw.shop.com/0912559509/-830636063-p.xhtml?credituser=C1757928924'
+            },
+            opc3: {
+                name: '愛尚它葡萄籽/松樹皮萃取粉末（OPC-3）',
+                image1: './img/opc1.jpg',
+                image2: './img/opc2.jpg',
+                description: '結合葡萄籽、松樹皮、紅酒等萃取物，富含前花青素（OPC），是強效的抗氧化劑。等滲透技術讓OPC快速進入血液，發揮保護作用。',
+                ingredients: [
+                    '葡萄籽萃取',
+                    '松樹皮萃取',
+                    '紅酒萃取',
+                    '越橘萃取'
+                ],
+                rationale: '嘴唇無血色可能與末梢循環不佳有關。OPC-3能促進微循環，改善血液流動，同時強大的抗氧化能力有助於整體健康。',
+                link: 'https://tw.shop.com/0912559509/644795616-p.xhtml?credituser=C1757928924'
+            },
+            bromelain: {
+                name: '愛尚它鳳梨酵素粉末',
+                image1: './img/bromelain1.jpg',
+                image2: './img/bromelain2.jpg',
+                description: '從鳳梨萃取的天然蛋白質分解酵素，幫助蛋白質消化，減輕消化系統負擔。等滲透配方確保酵素活性完整保留並快速作用。',
+                ingredients: [
+                    '鳳梨酵素',
+                    '蛋白酶',
+                    '消化輔助因子'
+                ],
+                rationale: '作為進階補充，當基礎消化功能改善後，鳳梨酵素能進一步加強蛋白質消化，特別適合肉類攝取較多時使用。',
+                link: 'https://tw.shop.com/0912559509/644795617-p.xhtml?credituser=C1757928924'
+            },
+            d3k2: {
+                name: '愛尚它維生素D3搭配K2粉末',
+                image1: './img/d3k21.jpg',
+                image2: './img/d3k22.jpg',
+                description: '結合維生素D3與K2的協同配方。D3促進鈣質吸收，K2確保鈣質正確分配到骨骼而非血管。等滲透技術提供最佳吸收效率。',
+                ingredients: [
+                    '維生素D3',
+                    '維生素K2（MK-7）',
+                    '吸收促進因子'
+                ],
+                rationale: '支持鈣質的完整利用，確保補充的鈣質真正進入骨骼。D3也與免疫、情緒相關，有助於改善整體健康狀態。',
+                link: 'https://tw.shop.com/0912559509/-1685463269-p.xhtml?credituser=C1757928924'
             }
-        });
-        
-        // Scroll to Top
-        document.getElementById('scrollTop').addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        // Product button click handlers
+        document.querySelectorAll('.product-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const productId = this.dataset.id;
+                const product = products[productId];
+                
+                // Remove active class from all buttons
+                document.querySelectorAll('.product-btn').forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Update product details
+                document.getElementById('product-name').textContent = product.name;
+                document.getElementById('product-image-1').src = product.image1;
+                document.getElementById('product-image-2').src = product.image2;
+                document.getElementById('product-description').textContent = product.description;
+                document.getElementById('product-rationale').textContent = product.rationale;
+                
+                // Update ingredients
+                const ingredientsList = document.getElementById('product-ingredients');
+                ingredientsList.innerHTML = '';
+                product.ingredients.forEach(ingredient => {
+                    const li = document.createElement('li');
+                    li.className = 'flex items-center';
+                    li.innerHTML = `<i class="fas fa-check text-emerald-500 mr-2"></i><span>${ingredient}</span>`;
+                    ingredientsList.appendChild(li);
+                });
+                
+                // Update product link
+                const productLink = document.getElementById('product-link');
+                productLink.href = product.link;
+                productLink.classList.remove('hidden');
+                
+                // Show product detail container
+                const container = document.getElementById('product-detail-container');
+                container.classList.remove('hidden');
+                
+                // Smooth scroll to product detail
+                container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
         });
 
-        // Lightbox Functions
-        function openLightbox(imageSrc) {
+        // Lightbox functions
+        function openLightbox(src) {
             const lightbox = document.getElementById('lightbox');
             const lightboxImage = document.getElementById('lightbox-image');
-            lightboxImage.src = imageSrc;
+            lightboxImage.src = src;
             lightbox.classList.add('show');
             document.body.style.overflow = 'hidden';
         }
@@ -795,174 +981,43 @@
             document.body.style.overflow = 'auto';
         }
 
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
                 closeLightbox();
             }
         });
 
-        document.addEventListener('DOMContentLoaded', () => {
-
-            const productsData = {
-                calcium: {
-                    name: "愛尚它®等滲鈣粉末",
-                    description: "採用的等滲透溶液技術，幫助營養快速吸收。鈣由多種鈣化合物組成，搭配輔助營養素，共同幫助骨骼與牙齒健康。等滲透技術能迅速通過胃排空，減少營養流失，對腸胃較溫和。",
-                    ingredients: ["碳酸鈣", "乳酸鈣", "檸檬酸鈣", "磷酸鈣", "維生素 D3", "鎂", "錳", "維生素 C", "維生素 B2", "硼、鉀"],
-                    rationale: "重點在於配方中的『鎂』。鎂是維持神經與肌肉功能的關鍵元素，有助於放鬆肌肉。對於便秘，足夠的鎂可以幫助腸道平滑肌正常收縮與蠕動，是改善便秘的關鍵營養素之一。",
-                    imagePlaceholder1: "./img/ca1.jpg",
-                    imagePlaceholder2: "./img/ca2.jpg",
-                    productUrl: "https://tw.shop.com/0912559509/-644795619-p.xhtml?credituser=C1757928924"
-                },
-                bromelain: {
-                    name: "愛尚它®鳳梨酵素粉末",
-                    description: "主要成分為鳳梨酵素（Bromelain）與蛋白酵素（Protease），均屬於蛋白質分解酵素，能將大分子蛋白質分解為小分子胜肽與胺基酸，讓身體更容易吸收利用。適合高蛋白飲食者或希望減輕腸胃消化負擔的人。",
-                    ingredients: ["鳳梨酵素 (Bromelain)", "蛋白酵素 (Protease)", "鉀", "白柳 (White Willow)", "不含乳製品、麩質", "全素產品"],
-                    rationale: "如果便秘伴隨著消化不良或脹氣，特別是在攝取較多蛋白質後，鳳梨酵素能協助分解食物，減輕腸胃道的負擔。它能輔助『益生消化酵素』，專門加強蛋白質的消化。",
-                    imagePlaceholder1: "./img/鳳1.jpg",
-                    imagePlaceholder2: "./img/鳳2.jpg",
-                    productUrl: "https://tw.shop.com/0912559509/-1167078804-p.xhtml?credituser=C1757928924"
-                },
-                greens: {
-                    name: "愛尚它®樂活蔬果精華粉末",
-                    description: "提供多種植物營養素（植化素），幫助均衡飲食，特別適合平時蔬菜水果攝取不足的人。成分有助於支持消化功能、促進體內環保與排毒，並維持整體健康與活力。等滲透配方有助快速吸收。",
-                    ingredients: ["螺旋藻", "小麥草", "苜蓿草", "大麥草", "綠藻", "綠花椰菜粉末", "高麗菜粉末", "甘藍菜粉末"],
-                    rationale: "長期便秘可能與膳食纖維或植物營養素攝取不足有關。此產品提供了多種深綠色蔬菜與藻類精華，雖然不是粗纖維，但能提供『體內環保』所需的植化素，支持消化道健康。",
-                    imagePlaceholder1: "./img/su1.jpg",
-                    imagePlaceholder2: "./img/su2.jpg",
-                    productUrl: "https://tw.shop.com/0912559509/-830636063-p.xhtml?credituser=C1757928924"
-                },
-                d3k2: {
-                    name: "愛尚它®維生素D3 (含維生素K2)粉末",
-                    description: "主要包含維生素D3、維生素K2、鈣與鉀。D3促進鈣與磷的吸收；K2幫助鈣質正確沉積在骨骼中，避免在血管堆積。兩者協同作用，提升骨骼健康與心血管保護。",
-                    ingredients: ["鈣 (Calcium)", "鉀 (Potassium)", "維生素D3 (Vitamin D3)", "維生素K2 (Vitamin K2)"],
-                    rationale: "維生素D3不僅與骨骼相關，也支持免疫系統功能。雖然它與便秘或臉色蒼白沒有最直接的關聯，但 D3 是維持整體健康和活力的基礎營養素，對『身體較虛』的狀態有輔助作用。",
-                    imagePlaceholder1: "./img/D.jpg",
-                    imagePlaceholder2: "./img/D2.jpg",
-                    productUrl: "https://tw.shop.com/0912559509/-830636060-p.xhtml?credituser=C1757928924"
-                },
-                enzymes: {
-                    name: "愛尚它®益生消化酵素粉末",
-                    description: "含有6種關鍵消化酵素（蛋白酶、澱粉酶、脂肪酶、乳糖酶、蔗糖酶、纖維素酶），能協助分解各種食物。此外，含有的益生菌 Bacillus coagulans (Lactospore™) 可幫助改變腸道菌叢生態，促進消化道健康。",
-                    ingredients: ["綜合消化酵素 (6種)", "Lactospore™ (芽孢乳酸菌)", "蘋果纖維", "氧化鎂", "硫酸鋅"],
-                    rationale: "這可能是最直接針對『長期便秘』的產品。它從兩方面著手：1. 消化酵素直接幫助分解食物，減輕腸道負擔。2. 益生菌幫助改善腸道菌叢，從根本調整腸道環境。這是改善消化吸收、緩解便秘的核心。",
-                    imagePlaceholder1: "./img/消1.jpg",
-                    imagePlaceholder2: "./img/消2.jpg",
-                    productUrl: "https://tw.shop.com/0912559509/1661949838-p.xhtml?credituser=C1757928924"
-                },
-                opc3: {
-                    name: "愛尚它®葡萄籽、松樹皮、紅酒萃取精華粉末",
-                    description: "富含原花青素 (OPCs) 的多元抗氧化配方，主要成分包含碧容健® (Pycnogenol® 松樹皮萃取物)、葡萄籽萃取物、紅酒萃取物、山桑果及柑橘生物類黃酮。碧容健®是研究廣泛的專利成分，有助於中和自由基，支持循環與健康維持。",
-                    ingredients: ["山桑果萃取物", "柑橘萃取生物類黃酮", "葡萄籽萃取物", "松樹皮萃取物 (Pycnogenol®)", "紅酒萃取物", "維生素 C & E"],
-                    rationale: "此產品的強項在於『抗氧化』與『促進循環』。對於『嘴唇沒有血色、臉色偏白』的狀況，可能代表末梢循環不佳。OPCs (尤其是碧容健®) 以支持血管健康、促進循環聞名，可能有助於改善氣色。",
-                    imagePlaceholder1: "./img/OPC1.jpg",
-                    imagePlaceholder2: "./img/OPC2.jpg",
-                    productUrl: "https://tw.shop.com/0912559509/644795616-p.xhtml?credituser=C1757928924"
-                }
-            };
-
-            const detailContainer = document.getElementById('product-detail-container');
-            const productNameEl = document.getElementById('product-name');
-            const productDescEl = document.getElementById('product-description');
-            const productIngredientsEl = document.getElementById('product-ingredients');
-            const productRationaleEl = document.getElementById('product-rationale');
-            const productImageEl1 = document.getElementById('product-image-1');
-            const productImageEl2 = document.getElementById('product-image-2');
-            const productLinkEl = document.getElementById('product-link');
+        // Progress bar
+        window.addEventListener('scroll', function() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
             
-            const allProductButtons = document.querySelectorAll('.product-btn');
-            let activeButton = null;
-
-            function showProductDetails(productKey) {
-                const product = productsData[productKey];
-                if (!product) {
-                    console.error("找不到產品資料:", productKey);
-                    return;
-                }
-                
-                const buttonEl = document.querySelector(`.product-btn[data-id="${productKey}"]`);
-
-                if (activeButton === buttonEl) {
-                    return; 
-                }
-
-                if (activeButton) {
-                    activeButton.classList.remove('active');
-                }
-                
-                if (buttonEl) {
-                    buttonEl.classList.add('active');
-                    activeButton = buttonEl;
-                }
-
-                productNameEl.textContent = product.name;
-                
-                productImageEl1.src = product.imagePlaceholder1;
-                productImageEl1.alt = product.name + " 1";
-                productImageEl2.src = product.imagePlaceholder2;
-                productImageEl2.alt = product.name + " 2";
-
-                productDescEl.textContent = product.description;
-                
-                productIngredientsEl.innerHTML = '';
-                if (product.ingredients && Array.isArray(product.ingredients)) {
-                    product.ingredients.forEach(ingredient => {
-                        const li = document.createElement('li');
-                        li.classList.add('flex', 'items-center', 'text-sm');
-                        li.innerHTML = `<i class="fas fa-check text-emerald-500 mr-2"></i><span>${ingredient}</span>`;
-                        productIngredientsEl.appendChild(li);
-                    });
-                }
-
-                productRationaleEl.textContent = product.rationale;
-
-                if (product.productUrl) {
-                    productLinkEl.href = product.productUrl;
-                    productLinkEl.classList.remove('hidden');
-                } else {
-                    productLinkEl.href = '#';
-                    productLinkEl.classList.add('hidden');
-                }
-
-                detailContainer.classList.remove('hidden');
-                
-                if (window.innerWidth < 768 && buttonEl) {
-                    setTimeout(() => {
-                        detailContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }, 100);
-                }
+            // Show/hide scroll to top button
+            const scrollTop = document.getElementById('scrollTop');
+            if (winScroll > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
             }
-            
-            allProductButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const productKey = button.getAttribute('data-id');
-                    showProductDetails(productKey);
-                });
-            });
-            
-            const firstButton = document.querySelector('.product-btn[data-id="enzymes"]');
-            if(firstButton) {
-                firstButton.click();
-            }
-            
-            // Smooth scroll for navigation
-            document.querySelectorAll('a.nav-link').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        const headerOffset = document.querySelector('header').offsetHeight;
-                        const elementPosition = targetElement.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: "smooth"
-                        });
-                    }
-                });
-            });
+        });
 
+        // Scroll to top
+        document.getElementById('scrollTop').addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
         });
     </script>
 </body>
