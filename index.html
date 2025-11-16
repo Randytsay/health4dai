@@ -3,26 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>針對您情況的營養補充建議</title>
+    <title>針對您情況的營養補充建議 | 專業健康分析</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap');
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8f0f7 100%);
         }
+        
+        /* Glassmorphism Effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        }
+        
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #0891b2 0%, #06b6d4 50%, #22d3ee 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Animated Gradient Background */
+        .gradient-bg {
+            background: linear-gradient(-45deg, #0891b2, #06b6d4, #22d3ee, #67e8f9);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        /* Product Button Styles */
+        .product-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .product-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+        
+        .product-btn:hover::before {
+            left: 100%;
+        }
+        
         .product-btn.active {
-            background-color: #0891b2;
+            background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%);
             color: white;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            transform: translateY(-2px);
+            box-shadow: 0 10px 30px -5px rgba(8, 145, 178, 0.5);
+            transform: translateY(-4px) scale(1.02);
         }
+        
+        .product-btn:hover:not(.active) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px -5px rgba(8, 145, 178, 0.3);
+        }
+        
+        /* Product Image Styles */
         .product-image {
             cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
+        
+        .product-image::after {
+            content: '🔍';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            font-size: 2rem;
+            background: rgba(8, 145, 178, 0.9);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .product-image:hover::after {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
         .product-image:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.2);
+            transform: scale(1.08) rotate(2deg);
+            box-shadow: 0 15px 35px -5px rgba(8, 145, 178, 0.4);
         }
+        
+        /* Lightbox Styles */
         #lightbox {
             display: none;
             position: fixed;
@@ -31,43 +130,179 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(0, 0, 0, 0.95);
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.4s ease;
         }
+        
         #lightbox.show {
             display: flex;
             opacity: 1;
         }
+        
         #lightbox-image {
             max-width: 90%;
             max-height: 90%;
             margin: auto;
-            border-radius: 8px;
-            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.5);
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
+            border-radius: 12px;
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.8);
+            transform: scale(0.8);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
+        
         #lightbox.show #lightbox-image {
             transform: scale(1);
         }
+        
         #lightbox-close {
             position: absolute;
-            top: 20px;
-            right: 30px;
-            font-size: 40px;
-            font-weight: bold;
+            top: 30px;
+            right: 40px;
+            font-size: 50px;
+            font-weight: 300;
             color: white;
             cursor: pointer;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
             z-index: 10000;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            backdrop-filter: blur(10px);
         }
+        
         #lightbox-close:hover {
-            color: #06b6d4;
+            background: rgba(6, 182, 212, 0.8);
+            transform: rotate(90deg) scale(1.1);
+        }
+        
+        /* Section Title Animation */
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #0891b2, #22d3ee);
+            border-radius: 2px;
+        }
+        
+        /* Card Hover Effects */
+        .hover-lift {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -10px rgba(8, 145, 178, 0.3);
+        }
+        
+        /* Progress Bar Animation */
+        .progress-bar {
+            width: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0891b2, #22d3ee);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+            transition: width 0.1s ease;
+        }
+        
+        /* Icon Pulse Animation */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        
+        .icon-pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        /* Smooth Scroll Indicator */
+        .scroll-indicator {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #0891b2, #06b6d4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(8, 145, 178, 0.4);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: scale(0);
+        }
+        
+        .scroll-indicator.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .scroll-indicator:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 30px rgba(8, 145, 178, 0.6);
+        }
+        
+        /* Badge Styles */
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #0891b2, #06b6d4);
+            color: white;
+            box-shadow: 0 4px 10px rgba(8, 145, 178, 0.3);
+        }
+        
+        /* Timeline Connector */
+        .timeline-connector {
+            position: relative;
+        }
+        
+        .timeline-connector::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, #0891b2, #22d3ee);
+        }
+        
+        /* Responsive Typography */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 1.75rem;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="text-gray-800">
+    
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <!-- Scroll to Top Button -->
+    <div class="scroll-indicator" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
 
     <!-- Lightbox for Image Zoom -->
     <div id="lightbox" onclick="closeLightbox()">
@@ -75,131 +310,365 @@
         <img id="lightbox-image" src="" alt="放大圖片">
     </div>
 
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <nav class="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center">
-            <h1 class="text-xl font-bold text-cyan-800">您的客製化營養分析</h1>
-            <div class="space-x-4">
-                <a href="#analysis" class="nav-link text-gray-600 hover:text-cyan-700 transition-colors">情況分析</a>
-                <a href="#products" class="nav-link text-gray-600 hover:text-cyan-700 transition-colors">產品探索</a>
-                <a href="#priority" class="nav-link text-gray-600 hover:text-cyan-700 transition-colors">建議順序</a>
+    <!-- Header with Gradient -->
+    <header class="glass-card sticky top-0 z-50 shadow-lg">
+        <nav class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center">
+                    <i class="fas fa-heartbeat text-white text-xl"></i>
+                </div>
+                <h1 class="text-xl md:text-2xl font-bold gradient-text">您的客製化營養分析</h1>
+            </div>
+            <div class="flex space-x-2 md:space-x-6">
+                <a href="#analysis" class="nav-link text-gray-600 hover:text-cyan-700 transition-all duration-300 font-medium flex items-center space-x-1">
+                    <i class="fas fa-chart-line hidden md:inline"></i>
+                    <span>分析</span>
+                </a>
+                <a href="#products" class="nav-link text-gray-600 hover:text-cyan-700 transition-all duration-300 font-medium flex items-center space-x-1">
+                    <i class="fas fa-box-open hidden md:inline"></i>
+                    <span>產品</span>
+                </a>
+                <a href="#priority" class="nav-link text-gray-600 hover:text-cyan-700 transition-all duration-300 font-medium flex items-center space-x-1">
+                    <i class="fas fa-list-ol hidden md:inline"></i>
+                    <span>建議</span>
+                </a>
             </div>
         </nav>
     </header>
 
-    <main class="max-w-5xl mx-auto p-4 md:p-8">
+    <main class="max-w-6xl mx-auto p-4 md:p-8">
 
-        <section id="analysis" class="mb-12 pt-16 -mt-16">
-            <h2 class="text-3xl font-bold text-cyan-700 mb-4 pb-2 border-b border-cyan-200">嗨，這是我為您準備的分析</h2>
-            <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
-                <p class="text-lg leading-relaxed">嗨！針對您提到的健康情況，我特別為您整理了這份分析。這是一個常見但需要重視的組合，這些症狀往往互為因果。</p>
-                <div class="grid md:grid-cols-2 gap-4">
-                    <div class="bg-gray-100 p-4 rounded-lg">
-                        <h3 class="font-semibold text-lg text-gray-700">可能的關聯性：</h3>
-                        <ul class="list-disc list-inside mt-2 space-y-1 text-gray-600">
-                            <li><strong>消化與吸收不良：</strong>長期便秘意味著腸道功能可能不佳，食物殘渣停留過久，影響營養吸收。</li>
-                            <li><strong>營養素缺乏：</strong>當消化吸收受阻，即使飲食均衡，身體也可能無法獲得足夠的營養素（如維生素B群、鐵質等），導致「虛弱」和「蒼白」的表徵。</li>
-                            <li><strong>腸道菌叢失衡：</strong>便秘也常與腸道菌叢生態有關，壞菌過多或好菌不足會進一步影響消化。</li>
-                            <li><strong>循環與代謝：</strong>嘴唇無血色也可能與末梢循環不佳有關，這可能與整體的能量代謝（虛弱）相關聯。</li>
-                        </ul>
+        <!-- Hero Section -->
+        <section class="mb-16 pt-8">
+            <div class="glass-card p-8 md:p-12 rounded-2xl text-center hover-lift">
+                <div class="inline-block mb-4">
+                    <span class="badge float-animation">
+                        <i class="fas fa-star mr-1"></i>專業健康分析
+                    </span>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-bold gradient-text mb-4">為您量身打造的營養方案</h2>
+                <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    基於您的健康狀況，我們為您準備了這份專業分析報告
+                </p>
+                <div class="flex justify-center space-x-8 mt-8">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold gradient-text">6</div>
+                        <div class="text-sm text-gray-500">精選產品</div>
                     </div>
-                    <div class="bg-cyan-50 p-4 rounded-lg border border-cyan-200">
-                        <h3 class="font-semibold text-lg text-cyan-800">分析的目標：</h3>
-                        <p class="mt-2 text-gray-700">這份介紹將幫助您了解，從營養補充的角度，有哪些可能的支持方式，方便您選擇最適合自己的方案：
-                        <br> <strong>1. 支持消化道機能</strong>
-                        <br> <strong>2. 補充關鍵營養素</strong>
-                        <br> <strong>3. 促進體內環保與循環</strong>
-                        </p>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold gradient-text">3</div>
+                        <div class="text-sm text-gray-500">階段方案</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold gradient-text">100%</div>
+                        <div class="text-sm text-gray-500">客製化</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="products" class="mb-12 pt-16 -mt-16">
-            <h2 class="text-3xl font-bold text-cyan-700 mb-6 pb-2 border-b border-cyan-200">產品介紹與分析</h2>
-            <p class="text-lg text-gray-600 mb-6">請點選以下產品，查看詳細介紹以及它們如何能針對您的需求提供支持。</p>
+        <!-- Analysis Section -->
+        <section id="analysis" class="mb-16 pt-16 -mt-16">
+            <h2 class="section-title text-3xl md:text-4xl font-bold text-cyan-700 mb-8">
+                <i class="fas fa-microscope mr-3"></i>健康狀況分析
+            </h2>
+            <div class="glass-card p-6 md:p-8 rounded-2xl shadow-xl hover-lift">
+                <div class="flex items-start space-x-4 mb-6">
+                    <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center flex-shrink-0 icon-pulse">
+                        <i class="fas fa-user-md text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">您的健康狀況</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            針對您提到的健康情況，我們進行了全面分析。這些症狀往往互為因果，需要系統性的改善方案。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="glass-card p-6 rounded-xl border-l-4 border-cyan-500 hover-lift">
+                        <h3 class="font-bold text-lg text-gray-800 mb-4 flex items-center">
+                            <i class="fas fa-link text-cyan-600 mr-2"></i>可能的關聯性
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-cyan-500 mr-3 mt-1 flex-shrink-0"></i>
+                                <div>
+                                    <strong class="text-gray-700">消化與吸收不良：</strong>
+                                    <span class="text-gray-600">長期便秘影響腸道功能，食物停留過久，營養吸收受阻。</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-cyan-500 mr-3 mt-1 flex-shrink-0"></i>
+                                <div>
+                                    <strong class="text-gray-700">營養素缺乏：</strong>
+                                    <span class="text-gray-600">吸收受阻導致維生素B群、鐵質不足，造成虛弱與蒼白。</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-cyan-500 mr-3 mt-1 flex-shrink-0"></i>
+                                <div>
+                                    <strong class="text-gray-700">腸道菌叢失衡：</strong>
+                                    <span class="text-gray-600">便秘與菌叢生態相關，好菌不足影響消化功能。</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-cyan-500 mr-3 mt-1 flex-shrink-0"></i>
+                                <div>
+                                    <strong class="text-gray-700">循環與代謝：</strong>
+                                    <span class="text-gray-600">嘴唇無血色可能與末梢循環不佳及能量代謝相關。</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="glass-card p-6 rounded-xl border-l-4 border-emerald-500 hover-lift">
+                        <h3 class="font-bold text-lg text-gray-800 mb-4 flex items-center">
+                            <i class="fas fa-bullseye text-emerald-600 mr-2"></i>改善目標
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3 p-3 bg-gradient-to-r from-cyan-50 to-transparent rounded-lg">
+                                <div class="w-10 h-10 bg-cyan-100 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-utensils text-cyan-600"></i>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-gray-800">支持消化道機能</div>
+                                    <div class="text-sm text-gray-500">改善腸道健康與蠕動</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3 p-3 bg-gradient-to-r from-emerald-50 to-transparent rounded-lg">
+                                <div class="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-pills text-emerald-600"></i>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-gray-800">補充關鍵營養素</div>
+                                    <div class="text-sm text-gray-500">提供身體所需營養</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3 p-3 bg-gradient-to-r from-sky-50 to-transparent rounded-lg">
+                                <div class="w-10 h-10 bg-sky-100 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-heart text-sky-600"></i>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-gray-800">促進循環與代謝</div>
+                                    <div class="text-sm text-gray-500">改善氣色與活力</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products" class="mb-16 pt-16 -mt-16">
+            <h2 class="section-title text-3xl md:text-4xl font-bold text-cyan-700 mb-8">
+                <i class="fas fa-box-open mr-3"></i>產品介紹與分析
+            </h2>
+            <div class="glass-card p-6 rounded-2xl mb-6">
+                <p class="text-lg text-gray-600 flex items-center">
+                    <i class="fas fa-info-circle text-cyan-500 mr-2"></i>
+                    點選以下產品，查看詳細介紹及針對您需求的專業分析
+                </p>
+            </div>
             
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 mb-6">
-                <button class="product-btn w-full p-3 text-sm md:text-base font-semibold bg-white text-cyan-800 rounded-lg shadow hover:shadow-md transition-all duration-300" data-id="enzymes">益生消化酵素</button>
-                <button class="product-btn w-full p-3 text-sm md:text-base font-semibold bg-white text-cyan-800 rounded-lg shadow hover:shadow-md transition-all duration-300" data-id="calcium">等滲鈣粉末</button>
-                <button class="product-btn w-full p-3 text-sm md:text-base font-semibold bg-white text-cyan-800 rounded-lg shadow hover:shadow-md transition-all duration-300" data-id="greens">樂活蔬果精華</button>
-                <button class="product-btn w-full p-3 text-sm md:text-base font-semibold bg-white text-cyan-800 rounded-lg shadow hover:shadow-md transition-all duration-300" data-id="opc3">葡萄籽/松樹皮</button>
-                <button class="product-btn w-full p-3 text-sm md:text-base font-semibold bg-white text-cyan-800 rounded-lg shadow hover:shadow-md transition-all duration-300" data-id="bromelain">鳳梨酵素</button>
-                <button class="product-btn w-full p-3 text-sm md:text-base font-semibold bg-white text-cyan-800 rounded-lg shadow hover:shadow-md transition-all duration-300" data-id="d3k2">維生素D3/K2</button>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 mb-8">
+                <button class="product-btn glass-card p-4 text-sm md:text-base font-semibold text-cyan-800 rounded-xl shadow-lg" data-id="enzymes">
+                    <i class="fas fa-seedling block text-2xl mb-2 text-cyan-600"></i>
+                    益生消化酵素
+                </button>
+                <button class="product-btn glass-card p-4 text-sm md:text-base font-semibold text-cyan-800 rounded-xl shadow-lg" data-id="calcium">
+                    <i class="fas fa-bone block text-2xl mb-2 text-cyan-600"></i>
+                    等滲鈣粉末
+                </button>
+                <button class="product-btn glass-card p-4 text-sm md:text-base font-semibold text-cyan-800 rounded-xl shadow-lg" data-id="greens">
+                    <i class="fas fa-leaf block text-2xl mb-2 text-cyan-600"></i>
+                    樂活蔬果精華
+                </button>
+                <button class="product-btn glass-card p-4 text-sm md:text-base font-semibold text-cyan-800 rounded-xl shadow-lg" data-id="opc3">
+                    <i class="fas fa-grape-alt block text-2xl mb-2 text-cyan-600"></i>
+                    葡萄籽/松樹皮
+                </button>
+                <button class="product-btn glass-card p-4 text-sm md:text-base font-semibold text-cyan-800 rounded-xl shadow-lg" data-id="bromelain">
+                    <i class="fas fa-apple-alt block text-2xl mb-2 text-cyan-600"></i>
+                    鳳梨酵素
+                </button>
+                <button class="product-btn glass-card p-4 text-sm md:text-base font-semibold text-cyan-800 rounded-xl shadow-lg" data-id="d3k2">
+                    <i class="fas fa-sun block text-2xl mb-2 text-cyan-600"></i>
+                    維生素D3/K2
+                </button>
             </div>
 
-            <div id="product-detail-container" class="bg-white p-6 md:p-8 rounded-lg shadow-xl min-h-[400px] hidden">
-                <h3 id="product-name" class="text-2xl font-bold text-gray-800 mb-4"></h3>
+            <div id="product-detail-container" class="glass-card p-6 md:p-10 rounded-2xl shadow-2xl min-h-[400px] hidden hover-lift">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 id="product-name" class="text-2xl md:text-3xl font-bold text-gray-800"></h3>
+                    <span class="badge">
+                        <i class="fas fa-certificate mr-1"></i>精選推薦
+                    </span>
+                </div>
                 
-                <div class="grid md:grid-cols-3 gap-6">
+                <div class="grid md:grid-cols-3 gap-8">
                     <div class="md:col-span-2">
                         
-                        <div class="flex gap-4 mb-6 max-w-sm mx-auto">
-                            <img id="product-image-1" src="https://placehold.co/300x300/e0f2fe/0c4a6e?text=請選產品" alt="產品圖片 1" class="product-image w-1/2 rounded-lg shadow-md" onclick="openLightbox(this.src)">
-                            <img id="product-image-2" src="https://placehold.co/300x300/e0f2fe/0c4a6e?text=請選產品" alt="產品圖片 2" class="product-image w-1/2 rounded-lg shadow-md" onclick="openLightbox(this.src)">
+                        <div class="flex gap-4 mb-6 max-w-md mx-auto">
+                            <div class="flex-1 relative group">
+                                <img id="product-image-1" src="https://placehold.co/400x400/e0f2fe/0c4a6e?text=產品圖片" alt="產品圖片 1" class="product-image w-full rounded-xl shadow-lg" onclick="openLightbox(this.src)">
+                            </div>
+                            <div class="flex-1 relative group">
+                                <img id="product-image-2" src="https://placehold.co/400x400/e0f2fe/0c4a6e?text=產品圖片" alt="產品圖片 2" class="product-image w-full rounded-xl shadow-lg" onclick="openLightbox(this.src)">
+                            </div>
                         </div>
-                        <p class="text-center text-sm text-gray-500 mb-4">💡 點擊圖片可放大查看</p>
+                        <p class="text-center text-sm text-gray-500 mb-6 flex items-center justify-center">
+                            <i class="fas fa-search-plus mr-2 text-cyan-500"></i>
+                            點擊圖片可放大查看細節
+                        </p>
 
-                        <h4 class="font-semibold text-lg text-gray-700 mb-2">產品介紹</h4>
-                        <p id="product-description" class="text-gray-600 leading-relaxed"></p>
+                        <div class="glass-card p-6 rounded-xl mb-6">
+                            <h4 class="font-bold text-lg text-gray-800 mb-3 flex items-center">
+                                <i class="fas fa-info-circle text-cyan-600 mr-2"></i>產品介紹
+                            </h4>
+                            <p id="product-description" class="text-gray-600 leading-relaxed"></p>
+                        </div>
 
                         <a id="product-link" 
                            href="#" 
                            target="_blank" 
                            rel="noopener noreferrer" 
-                           class="mt-6 inline-block bg-cyan-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-cyan-700 transition-all duration-300 hidden">
-                           前往產品官網 
-                           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block ml-1" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+                           class="inline-flex items-center space-x-2 gradient-bg text-white font-bold py-3 px-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hidden">
+                           <i class="fas fa-shopping-cart"></i>
+                           <span>前往產品官網</span>
+                           <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                     
-                    <div class="md:col-span-1">
-                        <h4 class="font-semibold text-lg text-gray-700 mb-2">主要成分</h4>
-                        <ul id="product-ingredients" class="space-y-2 mb-4 text-gray-600">
-                        </ul>
-                        <h4 class="font-semibold text-lg text-gray-700 mb-2">為何推薦給您？</h4>
-                        <p id="product-rationale" class="text-gray-600 bg-cyan-50 border border-cyan-200 p-3 rounded-lg"></p>
+                    <div class="md:col-span-1 space-y-6">
+                        <div class="glass-card p-5 rounded-xl">
+                            <h4 class="font-bold text-lg text-gray-800 mb-4 flex items-center">
+                                <i class="fas fa-flask text-emerald-600 mr-2"></i>主要成分
+                            </h4>
+                            <ul id="product-ingredients" class="space-y-2 text-gray-600">
+                            </ul>
+                        </div>
+                        
+                        <div class="glass-card p-5 rounded-xl border-l-4 border-cyan-500">
+                            <h4 class="font-bold text-lg text-gray-800 mb-3 flex items-center">
+                                <i class="fas fa-star text-amber-500 mr-2"></i>為何推薦給您？
+                            </h4>
+                            <p id="product-rationale" class="text-gray-600 leading-relaxed"></p>
+                        </div>
                     </div>
 
                 </div>
             </div>
         </section>
 
-        <section id="priority" class="mb-12 pt-16 -mt-16">
-            <h2 class="text-3xl font-bold text-cyan-700 mb-6 pb-2 border-b border-cyan-200">建議的補充順序</h2>
-            <p class="text-lg text-gray-600 mb-6">考量到「長期便秘」可能為最困擾且核心的問題，我建議您可以分階段補充，從根本的消化機能開始調整。</p>
+        <!-- Priority Section -->
+        <section id="priority" class="mb-16 pt-16 -mt-16">
+            <h2 class="section-title text-3xl md:text-4xl font-bold text-cyan-700 mb-8">
+                <i class="fas fa-list-ol mr-3"></i>建議的補充順序
+            </h2>
+            <div class="glass-card p-6 rounded-2xl mb-8">
+                <p class="text-lg text-gray-600 flex items-center">
+                    <i class="fas fa-lightbulb text-amber-500 mr-2"></i>
+                    考量到「長期便秘」為核心問題，建議分階段補充，從根本的消化機能開始調整
+                </p>
+            </div>
             
-            <div class="flex flex-col md:flex-row gap-6">
+            <div class="grid md:grid-cols-3 gap-6 relative">
                 
-                <div class="flex-1 bg-white p-6 rounded-lg shadow-md border-t-4 border-cyan-500">
-                    <h3 class="text-xl font-bold text-cyan-800 mb-3">第一階段：建立基礎 (消化機能)</h3>
-                    <p class="text-gray-600 mb-4">首先集中火力改善消化道機能與腸道蠕動。</p>
-                    <ul class="space-y-2">
-                        <li class="font-semibold">1. 愛尚它®益生消化酵素粉末</li>
-                        <p class="text-sm text-gray-500 pl-4">最直接幫助食物分解與改善腸道菌叢，是處理便秘的首選。</p>
-                        <li class="font-semibold">2. 愛尚它®等滲鈣粉末</li>
-                        <p class="text-sm text-gray-500 pl-4">配方中的「鎂」有助於放鬆肌肉與神經，對腸道平滑肌的正常蠕動有支持作用。</p>
+                <!-- Phase 1 -->
+                <div class="glass-card p-6 md:p-8 rounded-2xl border-t-4 border-cyan-500 hover-lift">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                            1
+                        </div>
+                        <span class="badge bg-cyan-500">基礎階段</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-cyan-800 mb-3">建立基礎</h3>
+                    <p class="text-gray-600 mb-4 text-sm">改善消化道機能與腸道蠕動</p>
+                    <ul class="space-y-4">
+                        <li class="glass-card p-4 rounded-lg">
+                            <div class="flex items-start space-x-3">
+                                <i class="fas fa-seedling text-cyan-600 text-xl mt-1"></i>
+                                <div>
+                                    <div class="font-semibold text-gray-800">益生消化酵素粉末</div>
+                                    <p class="text-sm text-gray-500 mt-1">直接改善食物分解與腸道菌叢</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="glass-card p-4 rounded-lg">
+                            <div class="flex items-start space-x-3">
+                                <i class="fas fa-bone text-cyan-600 text-xl mt-1"></i>
+                                <div>
+                                    <div class="font-semibold text-gray-800">等滲鈣粉末</div>
+                                    <p class="text-sm text-gray-500 mt-1">鎂元素支持腸道平滑肌蠕動</p>
+                                </div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
 
-                <div class="flex-1 bg-white p-6 rounded-lg shadow-md border-t-4 border-emerald-500">
-                    <h3 class="text-xl font-bold text-emerald-800 mb-3">第二階段：營養補充 (能量氣色)</h3>
-                    <p class="text-gray-600 mb-4">當消化道功能開始改善，接著補充身體缺乏的營養，改善虛弱與氣色。</p>
-                    <ul class="space-y-2">
-                        <li class="font-semibold">3. 愛尚它®樂活蔬果精華粉末</li>
-                        <p class="text-sm text-gray-500 pl-4">提供日常飲食不足的植物營養素，協助體內環保，為身體提供能量。</p>
-                        <li class="font-semibold">4. 愛尚它®葡萄籽、松樹皮、紅酒萃取精華</li>
-                        <p class="text-sm text-gray-500 pl-4">強效抗氧化物有助於促進循環，可能改善「嘴唇無血色」的狀況。</p>
+                <!-- Phase 2 -->
+                <div class="glass-card p-6 md:p-8 rounded-2xl border-t-4 border-emerald-500 hover-lift">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                            2
+                        </div>
+                        <span class="badge bg-emerald-500">營養階段</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-emerald-800 mb-3">營養補充</h3>
+                    <p class="text-gray-600 mb-4 text-sm">補充營養，改善虛弱與氣色</p>
+                    <ul class="space-y-4">
+                        <li class="glass-card p-4 rounded-lg">
+                            <div class="flex items-start space-x-3">
+                                <i class="fas fa-leaf text-emerald-600 text-xl mt-1"></i>
+                                <div>
+                                    <div class="font-semibold text-gray-800">樂活蔬果精華粉末</div>
+                                    <p class="text-sm text-gray-500 mt-1">提供植物營養素與能量</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="glass-card p-4 rounded-lg">
+                            <div class="flex items-start space-x-3">
+                                <i class="fas fa-grape-alt text-emerald-600 text-xl mt-1"></i>
+                                <div>
+                                    <div class="font-semibold text-gray-800">葡萄籽松樹皮萃取</div>
+                                    <p class="text-sm text-gray-500 mt-1">促進循環，改善氣色</p>
+                                </div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
 
-                <div class="flex-1 bg-white p-6 rounded-lg shadow-md border-t-4 border-sky-500">
-                    <h3 class="text-xl font-bold text-sky-800 mb-3">第三階段：進階微調</h3>
-                    <p class="text-gray-600 mb-4">根據前兩階段的改善情況，進行微調。</p>
-                    <ul class="space-y-2">
-                        <li class="font-semibold">5. 愛尚它®鳳梨酵素粉末</li>
-                        <p class="text-sm text-gray-500 pl-4">如果平時蛋白質攝取多，消化負擔重，可加入此項加強蛋白質分解。</p>
-                        <li class="font-semibold">6. 愛尚它®維生素D3 (含K2)</li>
-                        <p class="text-sm text-gray-500 pl-4">D3是現代人普遍缺乏的，若鈣粉末已補充D3，可評估是否需要額外加強。</p>
+                <!-- Phase 3 -->
+                <div class="glass-card p-6 md:p-8 rounded-2xl border-t-4 border-sky-500 hover-lift">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-sky-500 to-sky-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                            3
+                        </div>
+                        <span class="badge bg-sky-500">進階階段</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-sky-800 mb-3">進階微調</h3>
+                    <p class="text-gray-600 mb-4 text-sm">根據改善情況進行微調</p>
+                    <ul class="space-y-4">
+                        <li class="glass-card p-4 rounded-lg">
+                            <div class="flex items-start space-x-3">
+                                <i class="fas fa-apple-alt text-sky-600 text-xl mt-1"></i>
+                                <div>
+                                    <div class="font-semibold text-gray-800">鳳梨酵素粉末</div>
+                                    <p class="text-sm text-gray-500 mt-1">加強蛋白質分解能力</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="glass-card p-4 rounded-lg">
+                            <div class="flex items-start space-x-3">
+                                <i class="fas fa-sun text-sky-600 text-xl mt-1"></i>
+                                <div>
+                                    <div class="font-semibold text-gray-800">維生素D3含K2</div>
+                                    <p class="text-sm text-gray-500 mt-1">基礎營養素補充</p>
+                                </div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -207,30 +676,67 @@
 
     </main>
 
-    <footer class="bg-gray-800 text-gray-300 mt-12 py-8">
-        <div class="max-w-5xl mx-auto px-4 text-center">
-            <h4 class="font-bold text-lg text-white mb-2">重要提醒</h4>
-            <p class="text-sm text-gray-400">本分析僅基於您提到的情況與產品特性，提供一個可能的營養補充思路，並非醫療診斷或治療建議。個人體質不同，效果亦因人而異。長期的健康問題，強烈建議您應首先諮詢專業醫師或營養師，進行全面評估。本資訊僅為產品介紹，不具任何宣稱療效之意圖。</p>
+    <!-- Footer -->
+    <footer class="gradient-bg text-white mt-16 py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-8">
+                <div class="inline-block w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4 backdrop-blur-sm">
+                    <i class="fas fa-shield-alt text-3xl"></i>
+                </div>
+                <h4 class="font-bold text-2xl mb-3">重要提醒</h4>
+                <div class="w-20 h-1 bg-white bg-opacity-50 mx-auto mb-6 rounded"></div>
+            </div>
+            <div class="max-w-4xl mx-auto">
+                <div class="glass-card p-6 rounded-xl text-center" style="background: rgba(255, 255, 255, 0.1);">
+                    <p class="text-white text-opacity-90 leading-relaxed">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        本分析僅基於您提到的情況與產品特性，提供營養補充思路，並非醫療診斷或治療建議。個人體質不同，效果因人而異。長期健康問題，強烈建議諮詢專業醫師或營養師進行全面評估。本資訊僅為產品介紹，不具任何宣稱療效之意圖。
+                    </p>
+                </div>
+            </div>
+            <div class="text-center mt-8 text-white text-opacity-70 text-sm">
+                <p>© 2024 健康營養諮詢 | 用心為您的健康把關</p>
+            </div>
         </div>
     </footer>
 
     <script>
+        // Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+            
+            // Show/Hide Scroll to Top Button
+            const scrollTop = document.getElementById('scrollTop');
+            if (winScroll > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        });
+        
+        // Scroll to Top
+        document.getElementById('scrollTop').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
         // Lightbox Functions
         function openLightbox(imageSrc) {
             const lightbox = document.getElementById('lightbox');
             const lightboxImage = document.getElementById('lightbox-image');
             lightboxImage.src = imageSrc;
             lightbox.classList.add('show');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
+            document.body.style.overflow = 'hidden';
         }
 
         function closeLightbox() {
             const lightbox = document.getElementById('lightbox');
             lightbox.classList.remove('show');
-            document.body.style.overflow = 'auto'; // Re-enable scrolling
+            document.body.style.overflow = 'auto';
         }
 
-        // Close lightbox with ESC key
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 closeLightbox();
@@ -343,9 +849,8 @@
                 if (product.ingredients && Array.isArray(product.ingredients)) {
                     product.ingredients.forEach(ingredient => {
                         const li = document.createElement('li');
-                        li.textContent = ingredient;
-                        li.classList.add('flex', 'items-center');
-                        li.innerHTML = `<span class="h-2 w-2 bg-cyan-500 rounded-full mr-3 flex-shrink-0"></span>` + li.textContent;
+                        li.classList.add('flex', 'items-center', 'text-sm');
+                        li.innerHTML = `<i class="fas fa-check text-emerald-500 mr-2"></i><span>${ingredient}</span>`;
                         productIngredientsEl.appendChild(li);
                     });
                 }
@@ -363,7 +868,9 @@
                 detailContainer.classList.remove('hidden');
                 
                 if (window.innerWidth < 768 && buttonEl) {
-                    detailContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    setTimeout(() => {
+                        detailContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
                 }
             }
             
@@ -379,6 +886,7 @@
                 firstButton.click();
             }
             
+            // Smooth scroll for navigation
             document.querySelectorAll('a.nav-link').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
