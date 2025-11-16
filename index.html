@@ -270,6 +270,46 @@
             box-shadow: 0 4px 10px rgba(8, 145, 178, 0.3);
         }
         
+        /* Product Link in Priority Section */
+        .product-link {
+            color: inherit;
+            text-decoration: none;
+            position: relative;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .product-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #0891b2, #22d3ee);
+            transition: width 0.3s ease;
+        }
+        
+        .product-link:hover {
+            color: #0891b2;
+        }
+        
+        .product-link:hover::after {
+            width: 100%;
+        }
+        
+        .product-link i {
+            opacity: 0;
+            transform: translateX(-5px);
+            transition: all 0.3s ease;
+            font-size: 0.9em;
+        }
+        
+        .product-link:hover i {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
         /* Timeline Connector */
         .timeline-connector {
             position: relative;
@@ -317,7 +357,7 @@
                 <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center">
                     <i class="fas fa-heartbeat text-white text-xl"></i>
                 </div>
-                <h1 class="text-xl md:text-2xl font-bold gradient-text">您的客製化營養分析</h1>
+                <h1 class="text-xl md:text-2xl font-bold gradient-text">客製化營養建議</h1>
             </div>
             <div class="flex space-x-2 md:space-x-6">
                 <a href="#analysis" class="nav-link text-gray-600 hover:text-cyan-700 transition-all duration-300 font-medium flex items-center space-x-1">
@@ -591,7 +631,10 @@
                             <div class="flex items-start space-x-3">
                                 <i class="fas fa-seedling text-cyan-600 text-xl mt-1"></i>
                                 <div>
-                                    <div class="font-semibold text-gray-800">益生消化酵素粉末</div>
+                                    <a href="https://tw.shop.com/0912559509/1661949838-p.xhtml?credituser=C1757928924" target="_blank" rel="noopener noreferrer" class="product-link font-semibold text-gray-800">
+                                        益生消化酵素粉末
+                                        <i class="fas fa-external-link-alt ml-1"></i>
+                                    </a>
                                     <p class="text-sm text-gray-500 mt-1">直接改善食物分解與腸道菌叢</p>
                                 </div>
                             </div>
@@ -600,7 +643,10 @@
                             <div class="flex items-start space-x-3">
                                 <i class="fas fa-bone text-cyan-600 text-xl mt-1"></i>
                                 <div>
-                                    <div class="font-semibold text-gray-800">等滲鈣粉末</div>
+                                    <a href="https://tw.shop.com/0912559509/-644795619-p.xhtml?credituser=C1757928924" target="_blank" rel="noopener noreferrer" class="product-link font-semibold text-gray-800">
+                                        等滲鈣粉末
+                                        <i class="fas fa-external-link-alt ml-1"></i>
+                                    </a>
                                     <p class="text-sm text-gray-500 mt-1">鎂元素支持腸道平滑肌蠕動</p>
                                 </div>
                             </div>
@@ -623,7 +669,10 @@
                             <div class="flex items-start space-x-3">
                                 <i class="fas fa-leaf text-emerald-600 text-xl mt-1"></i>
                                 <div>
-                                    <div class="font-semibold text-gray-800">樂活蔬果精華粉末</div>
+                                    <a href="https://tw.shop.com/0912559509/-830636063-p.xhtml?credituser=C1757928924" target="_blank" rel="noopener noreferrer" class="product-link font-semibold text-gray-800">
+                                        樂活蔬果精華粉末
+                                        <i class="fas fa-external-link-alt ml-1"></i>
+                                    </a>
                                     <p class="text-sm text-gray-500 mt-1">提供植物營養素與能量</p>
                                 </div>
                             </div>
@@ -632,7 +681,10 @@
                             <div class="flex items-start space-x-3">
                                 <i class="fas fa-grape-alt text-emerald-600 text-xl mt-1"></i>
                                 <div>
-                                    <div class="font-semibold text-gray-800">葡萄籽松樹皮萃取</div>
+                                    <a href="https://tw.shop.com/0912559509/644795616-p.xhtml?credituser=C1757928924" target="_blank" rel="noopener noreferrer" class="product-link font-semibold text-gray-800">
+                                        葡萄籽松樹皮萃取
+                                        <i class="fas fa-external-link-alt ml-1"></i>
+                                    </a>
                                     <p class="text-sm text-gray-500 mt-1">促進循環，改善氣色</p>
                                 </div>
                             </div>
@@ -655,7 +707,10 @@
                             <div class="flex items-start space-x-3">
                                 <i class="fas fa-apple-alt text-sky-600 text-xl mt-1"></i>
                                 <div>
-                                    <div class="font-semibold text-gray-800">鳳梨酵素粉末</div>
+                                    <a href="https://tw.shop.com/0912559509/-1167078804-p.xhtml?credituser=C1757928924" target="_blank" rel="noopener noreferrer" class="product-link font-semibold text-gray-800">
+                                        鳳梨酵素粉末
+                                        <i class="fas fa-external-link-alt ml-1"></i>
+                                    </a>
                                     <p class="text-sm text-gray-500 mt-1">加強蛋白質分解能力</p>
                                 </div>
                             </div>
@@ -664,7 +719,10 @@
                             <div class="flex items-start space-x-3">
                                 <i class="fas fa-sun text-sky-600 text-xl mt-1"></i>
                                 <div>
-                                    <div class="font-semibold text-gray-800">維生素D3含K2</div>
+                                    <a href="https://tw.shop.com/0912559509/-830636060-p.xhtml?credituser=C1757928924" target="_blank" rel="noopener noreferrer" class="product-link font-semibold text-gray-800">
+                                        維生素D3含K2
+                                        <i class="fas fa-external-link-alt ml-1"></i>
+                                    </a>
                                     <p class="text-sm text-gray-500 mt-1">基礎營養素補充</p>
                                 </div>
                             </div>
@@ -695,7 +753,7 @@
                 </div>
             </div>
             <div class="text-center mt-8 text-white text-opacity-70 text-sm">
-                <p>© 2024 健康營養諮詢 | 用心為您的健康把關</p>
+                <p>© 2025 耀文行動商城 | 用心為您的健康把關</p>
             </div>
         </div>
     </footer>
